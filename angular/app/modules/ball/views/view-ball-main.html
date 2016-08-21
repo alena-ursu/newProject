@@ -1,0 +1,22 @@
+
+<div class="ball-main">
+	
+	<div class="ball-content">
+
+		<div class="ball" ng-click="getRandomQuote()">
+		<span id="answerButton">8</span>
+		</div>
+
+		{{quotes}}
+	
+
+
+		<h2>Magic 8-Ball</h2>
+		<h3>Ask a Questions and then Click</h3><br>
+
+
+		
+		<md-button class="md-raised md-primary login-button" ng-click="signupHandler()" ng-disabled="loginForm.$pristine || loginForm.$invalid"><a ui-sref="dashboard.basic.quotes">Edit questions</a></md-button>
+
+	</div>
+</div>

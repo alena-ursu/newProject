@@ -1,0 +1,28 @@
+<!doctype html>
+
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+		
+		<script type="application/javascript" src="app/app.js"></script>
+		<script type="application/javascript" src="app/modules/count/module.js"></script>
+		<script type="application/javascript" src="app/modules/count/controllers.js"></script>
+		<script type="application/javascript" src="app/modules/count/services.js"></script>
+
+	</head>
+
+	<body ng-app="FirstApp">
+
+	<div ng-controller="FirstCountController">
+		First count: {{value}} <br/>
+	
+	<button  ng-click="changeValue($event)">Change value</button>
+	</div>
+
+	<div ng-controller="SecondCountController">
+		Second count: {{value}} <br/>
+
+	<button ng-click="changeValue($event)">Change Value</button>
+	</div>
+	
+	</body>
+</html>

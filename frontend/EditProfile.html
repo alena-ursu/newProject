@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+
+	<head>
+		<script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+		<script src="js/scripts.js" type="application/javascript"></script>
+
+		
+
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+    	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+    <meta charset="utf-8">
+  <style>
+  	.main {
+	    		border: 1px solid rgba(0,0,0,0.1);
+	    		padding: 20px 50px 20px 50px;
+	    		margin-top: 30px;
+	    	}
+
+    td select,
+    td input {
+      width: 200px;
+    }
+
+    label {
+      display: block;
+    }
+
+    .error input,
+    .error textarea {
+      border: 1px solid red;
+    }
+
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+	<div class="container">
+		<div class="main col-sm-6 col-sm-offset-3">
+			<h1><span class="fa fa-sign-in"></span> Edit Profile</h1>
+  			<form>
+			    <table>
+			      <tr>
+			        <td><label><span id="firstName">First Name:</span></label></td>
+			        <td><input name="from" type="text"></td>
+			      </tr>       
+			      <tr>
+			        <td><label><span id="lastName">Last Name:</span></label></td>
+			        <td><input name="from1" type="text"></td>
+			      </tr>   
+			      <tr>
+			        <td><label><span id="userName">User Name:</span></label></td>
+			        <td><input name="from2" type="text"></td>
+			      </tr>     
+			      <tr>
+			        <td><label><span id="password">Password</span></label></td>
+			        <td><input name="password" type="password"></td>
+			      </tr> 		        
+			      <tr>
+			        <td><label><span>Repeat Password:</span></label></td>
+			        <td><input name="password2" type="password"></td>		           
+			      </tr>
+			      <tr><td><label><span id="age">Age:</span></label></td><td>
+			          <select name="to">
+			            <option></option>
+			            <option value="0">16-25</option>
+			            <option value="1">26-35</option>
+			            <option value="2">36-45</option>
+			            <option value="3">46-55</option>
+			            <option value="3">56-65 </option>
+			          </select>
+			        </td>
+			      </tr>
+			    </table>
+			    
+			    <label><span>Text:</span></label>
+			    <textarea name="message" style="display:block;width:330px;height:80px"></textarea><br>
+			    
+			    
+			    <input type="button" class="btn btn-warning btn-lg"onclick="validate(this.form)" value="Save">
+			</form>
+  			<hr>
+
+			<p>Need an account? <a href="signup.html">Signup</a></p>
+		</div>
+	</div>
+  <script>
+    function showError(container, errorMessage) {
+      container.className = 'error';
+      var msgElem = document.createElement('span');
+      msgElem.className = "error-message";
+      msgElem.innerHTML = errorMessage;
+      container.appendChild(msgElem);
+    }
+
+    function resetError(container) {
+      container.className = '';
+      if (container.lastChild.className == "error-message") {
+        container.removeChild(container.lastChild);
+      }
+    }
+
+    function validate(form) {
+      var elems = form.elements;
+
+      resetError(elems.from.parentNode);
+      if (!elems.from.value) {
+        showError(elems.from.parentNode, ' specify name.');
+      }
+      resetError(elems.from1.parentNode);
+      if (!elems.from1.value) {
+        showError(elems.from1.parentNode, ' specify name.');
+      }
+      resetError(elems.from2.parentNode);
+      if (!elems.from2.value) {
+        showError(elems.from2.parentNode, ' specify name.');
+      }
+      
+
+      resetError(elems.password.parentNode);
+      if (!elems.password.value) {
+        showError(elems.password.parentNode, ' enter the password.');
+      } else if (elems.password.value != elems.password2.value) {
+        showError(elems.password.parentNode, ' passwords do not match.');
+      }
+
+      resetError(elems.to.parentNode);
+      if (!elems.to.value) {
+        showError(elems.to.parentNode, ' specify age.');
+      }
+
+      
+    }
+  </script>
+
+
+</body>
+
+</html>

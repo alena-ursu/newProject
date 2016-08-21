@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+	<head>
+		<script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+		<script src="js/scripts.js" type="application/javascript"></script>
+
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+    	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+
+    	<style>
+	    	.main {
+	    		border: 1px solid rgba(0,0,0,0.1);
+	    		padding: 20px 50px;
+	    		margin-top: 30px;
+	    	}
+    	</style>
+
+    	<script>
+	    	$('document').ready(function(){
+	    		$('#SaveBtn').on('click', function(e){
+	    			e.preventDefault();
+	    			login();
+	    		});
+	    	});
+
+	    	function login(){
+	    		if($('input[name="username"]').val() && $('input[name="password"]').val()) {
+
+	    			var obj = {
+		    			username: $('input[name="username"]').val(),
+		    			password: $('input[name="password"]').val()
+		    		}
+		    		$.ajax({
+		    			url: '/login',
+		    			type: 'POST',
+		    			data: obj
+		    		}).done(function(data){
+
+
+
+		    			console.log(data);
+
+		    			//build obj to be stored as cookie
+		    			var cookieObj = {
+		    				username: obj.username,
+		    				id: data.id,
+		    				firstName: data.firstName,
+		    				lastName: data.lastName,
+		    				token: data.token
+		    			};
+
+		    			// store the obj into a cookie called 'user'
+
+		    			$.cookie('user', JSON.stringify(cookieObj));
+
+		    			window.location = 'todos.html';
+		    		}).fail(function(error){
+		    			alert('Login failed.');
+		    		});
+	    		}
+	    	}
+    	</script>
+	</head>
+
+	<body>
+			
+		<div class="container">
+
+			<div class="main col-sm-6 col-sm-offset-3">
+
+			    <h1><span class="fa fa-sign-in"></span> My Profile</h1>
+
+				<form action="/login" method="post">
+			    	<div class="form-group">
+			    		<!--<p>First Name:<span> Test </span></p>
+			    		<input type="text" class="hidden" name="First Name" placeholder="Test">
+
+			    		<p>Last Name:<span> Test </span></p>
+			    		<input type="text" class="hidden" name="Last Name" placeholder="Test">
+
+			    		<p>User Name:<span> Test </span></p>
+			    		<input type="text" class="hidden" name="User Name" placeholder="Test">
+
+			    		<p>Password:<span> Test </span></p>
+			    		<input type="text" class="hidden" name="Password" placeholder="Test">-->
+
+
+			    		<label>First Name:</label>
+			            <input type="text" class="form-control" name="First Name">
+			            
+			            <label>Last Name:</label>
+			            <input type="text" class="form-control" name="Last Name">
+			            
+			            <label>User Name:</label>
+			            <input type="text" class="form-control" name="username">
+			            
+			            <label>Password:</label>
+			            <input type="password" class="form-control" name="password">
+			        </div>
+
+			        <button type="submit" id="EditBtn" class="btn btn-warning btn-lg"><a href="editprofile.html">Edit
+			        </button>
+			        <button type="submit" id="SaveBtn" class="btn btn-warning btn-lg">Save</button>
+			    </form>
+
+			    <hr>
+
+			    <p>Need an account? <a href="signup.html">Signup</a></p>
+			</div>
+		</div>
+	</body>
+</html>
